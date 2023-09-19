@@ -1,0 +1,36 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  max-width: 250px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.sidebar_header {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+.sidebar_header span {
+  align-items: center;
+  margin-right: 10px;
+}
+.sidebar_header img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  border-radius: 25px;
+}
+.sidebar button {
+  border: none;
+  text-align: left;
+  background-color: none;
+  margin-top: 10px;
+  display: inline-flex;
+  background-color: white;
+}
+.sidebar button:hover {
+  cursor: pointer;
+}
+.sidebar button span {
+  margin-left: 10px;
+}

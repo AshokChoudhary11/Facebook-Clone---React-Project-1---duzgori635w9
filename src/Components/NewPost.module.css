@@ -1,0 +1,118 @@
+.posts {
+  border: 1px solid #ddd;
+  margin-top: 20px;
+}
+.profileImage {
+  display: flex;
+}
+
+.profileImage img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  border-radius: 25px;
+}
+/*--------------*/
+.PostButton {
+  padding: 5px 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(37, 37, 249);
+  color: white;
+  margin-right: 0px;
+  outline: none;
+}
+.postSection {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: white;
+}
+
+.postSection_Profile {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.postSection_Profile span {
+  align-items: center;
+}
+.postSection_Profile img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  max-width: none;
+  border-radius: 25px;
+}
+.postInput1 {
+  height: fit-content;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  width: 100%;
+  margin-right: 5px;
+  resize: none;
+}
+.uploadImg {
+  width: 200px;
+  border-radius: 8px;
+  margin: auto;
+}
+.crossOnImg {
+  background-color: lightgray;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+  border-radius: 25px;
+  padding: 2px 8px;
+}
+.AddActivity {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* margin: 10px; */
+  position: relative;
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.AddActivity_button {
+  display: inline-flex;
+  align-items: center;
+  justify-items: center;
+  margin-top: 10px;
+  width: 33.33%;
+}
+.AddActivity_button button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.AddActivity_button_disabled button:not(:disabled) {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.AddActivity_button button {
+  border: none;
+  text-align: left;
+  display: inline-flex;
+  margin: auto;
+  padding: 10px;
+}
+.AddActivity_button button:not(:disabled):hover {
+  font-weight: 600;
+}
+.AddActivity_button span {
+  margin-left: 10px;
+}
+
+.choose_file_input {
+  display: none;
+}
+
+.click_button {
+  background-color: var(--button-bg-color);
+}

@@ -1,0 +1,38 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  width: 300px;
+  margin: 15px;
+  overflow: hidden;
+  height: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+.coverImage img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  /* position: relative; */
+}
+.pageContant {
+  display: flex;
+  background-color: white;
+  width: 100%;
+  text-align: left;
+  gap: 10px;
+  padding: 16px;
+  height: 100%;
+  /* top: 150px; */
+}
+.PageProfile img {
+  /* width: 70px;
+  height: 70px; */
+  border-radius: 25px;
+}
+.PageName {
+  font-weight: bold;
+}
+
+.PageDescription {
+  font-size: 14px;
+}

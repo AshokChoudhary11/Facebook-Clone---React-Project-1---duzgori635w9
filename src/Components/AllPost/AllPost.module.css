@@ -1,0 +1,12 @@
+.all_post_container {
+  flex-grow: 1;
+  overflow: scroll;
+  overscroll-behavior: contain;
+  margin-top: 10px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  width: 600px;
+  max-width: 100%;
+}

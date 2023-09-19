@@ -1,0 +1,10 @@
+.all_post_container {
+  flex-grow: 1;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 100%;
+  background-color: transparent;
+}

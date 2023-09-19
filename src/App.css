@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.facebook-page-wrapper {
+  background-color: var(--backGround-color);
+  color: var(--text-color);
+}
+
+.body-theme-light {
+  --backGround-color: white;
+  --text-color: black;
+  --border-color: grey;
+}
+.body-theme-dark {
+  --backGround-color: black;
+  --text-color: white;
+  --border-color: grey;
+}
+/* ------------ - */
+
+.profile {
+  position: relative;
+}
+
+.useProfile {
+  z-index: 1;
+  width: 350px;
+  position: absolute;
+  right: 10px;
+  top: calc(100% + 12px);
+  background-color: white;
+  height: 440px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px 1px lightgray;
+  padding: 0 12px;
+}
+.profileSection {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 10px;
+  width: 310px;
+  padding: 10px 10px;
+  background-color: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 6px 1px lightgray;
+}
+.userProfileDetails {
+  display: inline-flex;
+  justify-items: center;
+  align-items: center;
+  padding: 5px;
+  gap: 10px;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  width: 280px;
+  /* margin: 22px 15px; */
+  font-size: 17px;
+  padding: 10px 10px;
+  /* gap: 10px; */
+  cursor: pointer;
+  width: 100%;
+  transition: transform 100ms ease-in;
+}
+.buttons svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+}
+.buttons:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+  transform: scale(1.07);
+}
+.useProfile p {
+  font-size: 15px;
+  text-align: left;
+  margin: 10px;
+  color: gray;
+}
+.pageNotFound {
+  height: calc(100% - 68px);
+}
+.active svg {
+  color: blue;
+}

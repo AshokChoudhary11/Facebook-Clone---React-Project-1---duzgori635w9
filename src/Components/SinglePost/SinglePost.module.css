@@ -1,0 +1,59 @@
+.SinglePost_container {
+  width: 600px;
+  max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin: auto;
+}
+.SinglePost_container p {
+  margin: 10px;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  margin: 15px;
+}
+
+.profile span {
+  align-items: center;
+  margin-right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.profile img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  border-radius: 25px;
+}
+.PostImage {
+  width: 600px;
+}
+.LikeCommentShare {
+  display: flex;
+  justify-content: space-between;
+}
+.LikeCommentShareCount {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 45px;
+}
+.LikeCommentShare button {
+  padding: 10px 0px;
+  width: 100%;
+  border: none;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.LikeCommentShare span {
+  margin-left: 10px;
+  align-items: center;
+  margin-right: 4px;
+}
