@@ -7,11 +7,11 @@ import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfi
 
 function NewPost() {
   const userDetails = localStorage.getItem("userDetails");
+  const parseUserDetails = JSON.parse(userDetails);
   const [postHeading, setPostHeading] = useState("");
   const [fileInput, setFileInput] = useState([]);
   const chooseImageInputRef = useRef();
   const [newPostImage, setNewPostImage] = useState();
-  // const [inputEmpty , setInputEmpty] = useState("");
   const uploadPost = async () => {
     var myHeaders = new Headers();
     const parseUserDetails = JSON.parse(userDetails);
@@ -42,10 +42,6 @@ function NewPost() {
       setPostHeading("");
       setNewPostImage("");
     }
-    // .then((response) => response.json())
-    // .then((result) => {
-    //   console.log(result)})
-    // .catch((error) => console.log("error", error));
   };
   return (
     <>
@@ -62,7 +58,7 @@ function NewPost() {
             className={style.postInput1}
             id="post"
             name="post"
-            placeholder="What's on your mind Ashok? "
+            placeholder={`What's on your mind ${parseUserDetails?.data?.user?.name}? `}
             value={postHeading}
             onChange={(e) => {
               setPostHeading(e.target.value);
