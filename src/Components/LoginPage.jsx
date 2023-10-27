@@ -139,14 +139,14 @@ export default function LoginPage() {
                 />
                 <div className={style.error}>{passwordError}</div>
               </div>
-              <div className="text-sm">
+              {/* <div className="text-sm">
                 <a
                   href="#"
                   className="font-semibold text-indigo-600 hover:text-indigo-500 my-5 text-right"
                 >
                   Forgot password?
                 </a>
-              </div>
+              </div> */}
             </div>
             {error && <div className={style.error}>{error}</div>}
 
