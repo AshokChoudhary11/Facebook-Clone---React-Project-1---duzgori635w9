@@ -4,8 +4,11 @@ import {
   ThumbUpOutlined,
   CommentOutlined,
   ShareOutlined,
+  ThumbUp,
+  CommentRounded,
 } from "@mui/icons-material";
-import { Link, json } from "react-router-dom";
+import { generateRandomName } from "../../utils/randomName";
+import { Link } from "react-router-dom";
 
 const SinglePost = ({ item }) => {
   const userDetail = JSON.parse(localStorage.getItem("userDetails") || "{}");
@@ -54,6 +57,7 @@ const SinglePost = ({ item }) => {
     setLike(like - 1);
     setSelfLike(false);
   };
+  const handleComment = () => {};
 
   return (
     <div className={style.SinglePost_container}>
@@ -61,9 +65,11 @@ const SinglePost = ({ item }) => {
         <>
           <div className={style.profile}>
             <span>
-              <img src={item.author.profileImage} alt="pofile"></img>
+              {item.author.profileImage && (
+                <img src={item.author.profileImage} alt="pofile"></img>
+              )}
             </span>
-            <span>{item.author.name}</span>
+            <span>{item.author.name || generateRandomName()}</span>
           </div>
 
           <p>{item.content}</p>
@@ -76,23 +82,28 @@ const SinglePost = ({ item }) => {
           )}
         </>
       </Link>
-
       <div className={style.LikeCommentShareCount}></div>
       <div className={style.LikeCommentShare}>
         <button
           onClick={selfLike ? handleRemoveLike : handleLike}
           style={{ color: selfLike ? "blue" : "black" }}
         >
-          <ThumbUpOutlined />
+          {selfLike ? (
+            <ThumbUp />
+          ) : (
+            <ThumbUpOutlined style={{ color: "gray" }} />
+          )}
           <span>Like</span> {like}
         </button>
+        <Link to={`/post/${item._id}/`}>
+          <button onClick={handleComment}>
+            <CommentRounded style={{ color: "gray" }} />
+            <span>Comments</span>
+            {item.commentCount}
+          </button>
+        </Link>
         <button>
-          <CommentOutlined />
-          <span>Comments</span>
-          {item.commentCount}
-        </button>
-        <button>
-          <ShareOutlined />
+          <ShareOutlined style={{ color: "gray" }} />
           <span>Share</span>
         </button>
       </div>

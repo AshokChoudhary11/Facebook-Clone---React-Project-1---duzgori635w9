@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./LoginPage.module.css";
 import { Navigate, useNavigate } from "react-router-dom";
-import { useAuth } from "../Provider/AuthProvider";
+import { useAuth } from "../Provider/hooks";
 
 export default function LoginPage() {
   const [userName, setUserName] = useState("");
@@ -11,7 +11,7 @@ export default function LoginPage() {
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
 
-  const { user, setUser } = useAuth();
+  const { setUser } = useAuth();
 
   const handleLogIn = async () => {
     try {

@@ -1,7 +1,8 @@
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import style from "./SingUp.module.css";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../Provider/AuthProvider";
+import { useAuth } from "../Provider/hooks";
 
 export default function SingUp() {
   const [userFirstName, setUserFirstName] = useState("");
@@ -13,7 +14,7 @@ export default function SingUp() {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-  const { user, setUser } = useAuth();
+  const { setUser } = useAuth();
 
   const handleEmailChange = (e) => {
     setuser_email(e.target.value);

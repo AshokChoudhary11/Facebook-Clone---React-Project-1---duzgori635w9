@@ -1,0 +1,26 @@
+.page404Container {
+  display: flex;
+  width: 100%;
+  max-width: 80vh;
+  max-height: 70vh;
+  flex-direction: column;
+  margin: auto;
+}
+
+.page404Heading {
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px;
+  margin: 4px auto;
+}
+
+.page404Button {
+  outline: none;
+  border: none;
+  background-color: #2b7bf9;
+  color: #fff;
+  font-weight: 500;
+  padding: 10px 30px;
+  margin: auto;
+  border-radius: 8px;
+}

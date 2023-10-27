@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import style from "./SingleUplodedPost.module.css";
+import defaultProfile from "../../assets/images.jpeg";
+
 import {
   ThumbUpOutlined,
   CommentOutlined,
   ShareOutlined,
+  ThumbUp,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { timePassedFromTimestamp } from "../../utils/time";
 
 const SingleUplodedPost = ({ item }) => {
   const userDetail = JSON.parse(localStorage.getItem("userDetails") || "{}");
@@ -60,15 +64,21 @@ const SingleUplodedPost = ({ item }) => {
       <>
         <div className={style.profile}>
           <span>
-            <img src={item.author.profileImage} alt="pofile"></img>
+            <img src={defaultProfile} alt="pofile"></img>
           </span>
-          <span>{item.author.name}</span>
+          <span>
+            <div>{userDetail?.data?.user?.name}</div>
+            <div className={style.CreatedTime}>
+              {timePassedFromTimestamp(item.createdAt)}
+            </div>
+          </span>
         </div>
-
-        <p>{item.content}</p>
-        {item.images?.length && (
-          <img src={item.images[0]} alt="image" className={style.PostImage} />
-        )}
+        <Link to={`/post/${item?._id}/`}>
+          <p>{item.content}</p>
+          {item.images?.length && (
+            <img src={item.images[0]} alt="image" className={style.PostImage} />
+          )}
+        </Link>
       </>
 
       <div className={style.LikeCommentShareCount}></div>
@@ -77,15 +87,21 @@ const SingleUplodedPost = ({ item }) => {
           onClick={selfLike ? handleRemoveLike : handleLike}
           style={{ color: selfLike ? "blue" : "black" }}
         >
-          <ThumbUpOutlined />
+          {selfLike ? (
+            <ThumbUp />
+          ) : (
+            <ThumbUpOutlined style={{ color: "gray" }} />
+          )}
           <span>Like</span> {like}
         </button>
+        <Link to={`/post/${item?.data?._id}/`}>
+          <button>
+            <CommentOutlined style={{ color: "gray" }} />
+            <span>Comments</span>
+          </button>
+        </Link>
         <button>
-          <CommentOutlined />
-          <span>Comments</span>
-        </button>
-        <button>
-          <ShareOutlined />
+          <ShareOutlined style={{ color: "gray" }} />
           <span>Share</span>
         </button>
       </div>

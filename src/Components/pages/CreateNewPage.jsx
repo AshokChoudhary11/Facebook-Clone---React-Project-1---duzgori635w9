@@ -2,40 +2,51 @@
 import React, { useState } from "react";
 import Navbar from "../Navbar";
 import style from "./createNewPage.module.css";
-import { Form } from "react-router-dom";
 import AllChannels from "../AllChannels/AllChannels";
-
+import Spinner from "../Spinner";
 const CreateNewPage = () => {
   const [pageName, setPageName] = useState("");
   const [category, setCatagory] = useState("");
   const [bio, setBio] = useState("");
   const [newPages, setNewPages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async () => {
-    const form = new FormData();
-    form.append("name", pageName);
-    form.append("description", bio);
-    const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-    const response = await fetch(
-      "https://academics.newtonschool.co/api/v1/facebook/channel/",
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${userDetails.token}`,
-          projectId: "9fc41adjs85k",
-        },
-        body: form,
+    try {
+      setLoading(true);
+      setError(false);
+      const form = new FormData();
+      form.append("name", pageName);
+      form.append("description", bio);
+      const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+      const response = await fetch(
+        "https://academics.newtonschool.co/api/v1/facebook/channel/",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${userDetails.token}`,
+            projectId: "9fc41adjs85k",
+          },
+          body: form,
+        }
+      );
+      const data = await response.json();
+      if (response.status >= 400) {
+        setError(data?.message || "Something went wrong");
+        setLoading(false);
+        console.log(data.message);
+        return;
+      } else {
+        setLoading(false);
+        setNewPages([data, ...newPages]);
+        setPageName("");
+        setBio("");
+        setCatagory("");
       }
-    );
-    const data = await response.json();
-    if (response.status >= 400) {
-      console.log(data.message);
-      return;
-    } else {
-      setNewPages([data, ...newPages]);
-      setPageName("");
-      setBio("");
-      setCatagory("");
+    } catch {
+      setLoading(false);
+      setError("Network Failure");
     }
   };
   return (
@@ -50,6 +61,7 @@ const CreateNewPage = () => {
           </div>
           <input
             type="text"
+            value={pageName}
             onChange={(e) => setPageName(e.target.value)}
             placeholder="Page name (required)"
             required
@@ -60,19 +72,22 @@ const CreateNewPage = () => {
           </p>
           <input
             type="text"
+            value={category}
             onChange={(e) => setCatagory(e.target.value)}
             placeholder="Catetory(required)"
             required
           />
           <p>Enter a category that best describes you.</p>
           <textarea
+            value={bio}
             className={style.bio}
             onChange={(e) => setBio(e.target.value)}
             placeholder="Bio (optional)"
           />
           <p>Tell people a little about what you do.</p>
+          {error && <div className={style.errorComponent}>{error}</div>}
           <button className={style.submitButton} onClick={handleSubmit}>
-            Create Page
+            Create Page {loading && <Spinner />}
           </button>
         </section>
         <section className={style.channelList}>

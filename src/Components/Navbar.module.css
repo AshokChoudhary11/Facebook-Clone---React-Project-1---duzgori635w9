@@ -21,11 +21,14 @@
     justify-content: space-between;
   }
 }
-.navbar_logo img {
+.logoicon {
   width: 40px;
   height: 40px;
   margin-right: 5px;
   border-radius: 50%;
+}
+.facebookLogoname {
+  display: none;
 }
 
 .navbar_search input {
@@ -36,16 +39,12 @@
   background-color: #f1f1f1;
   margin: 0px 0 0 10px;
   cursor: not-allowed;
-  @media only screen and (max-width: 600px) {
-    display: none;
-  }
 }
 
 .navbar_icons button {
   background-color: white;
   border: none;
   cursor: pointer;
-  margin-right: 25px;
   color: gray;
   transition: transform 100ms ease-in;
 }
@@ -55,16 +54,11 @@
   transform: scale(1.07);
 }
 .navbar_icons svg {
-  width: 50px;
-  height: 40px;
+  width: 36px;
+  height: 32px;
   @media only screen and (max-width: 600px) {
     width: 30px;
     height: 25px;
-  }
-}
-.navbar_icons {
-  @media only screen and (max-width: 600px) {
-    margin-top: 10px;
   }
 }
 
@@ -81,6 +75,11 @@
   display: none;
   @media only screen and (max-width: 600px) {
     display: block;
+    width: 32px;
+    height: 32px;
+    margin-right: 5px;
+    border-radius: 50%;
+    margin-top: -4px;
   }
 }
 .navbar_buttons span {
@@ -110,4 +109,27 @@
   width: 40px;
   height: 40px;
   border-radius: 25px;
+}
+
+.navbar_icons {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar_search input {
+    display: none;
+  }
+  .logoicon {
+    display: none;
+  }
+  .facebookLogoname {
+    display: flex;
+    width: 120px;
+    margin: -28px 0 -16px 0;
+  }
+  .navbar_icons {
+    gap: 10px;
+  }
 }

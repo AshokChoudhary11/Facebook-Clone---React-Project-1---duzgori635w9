@@ -22,7 +22,11 @@
   align-items: center;
   margin-right: 10px;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 500;
+}
+.CreatedTime {
+  font-size: 10px;
+  color: gray;
 }
 .profile img {
   width: 30px;
@@ -55,4 +59,14 @@
   margin-left: 10px;
   align-items: center;
   margin-right: 4px;
+}
+@media only screen and (max-width: 600px) {
+  .profile {
+    margin-right: 10px;
+    margin: 8px 8px 0 8px;
+  }
+  .profile span {
+    font-size: 16px;
+    font-weight: 500;
+  }
 }

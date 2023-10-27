@@ -44,7 +44,9 @@
   padding: 0px 45px;
 }
 .LikeCommentShare button {
-  padding: 10px 0px;
+  margin: 4px 4px;
+  padding: 6px 6px;
+  border-radius: 8px;
   width: 100%;
   border: none;
   background-color: white;
@@ -52,6 +54,10 @@
   align-items: center;
   justify-content: center;
 }
+.LikeCommentShare button:hover {
+  background-color: rgb(238, 238, 238);
+}
+
 .LikeCommentShare span {
   margin-left: 10px;
   align-items: center;

@@ -33,6 +33,11 @@ textarea {
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 6px;
 }
 .createPage h2 {
   font-weight: bold;
@@ -60,4 +65,8 @@ textarea {
 
 .subHeading {
   font-size: 14px;
+}
+.errorComponent {
+  margin: 4px 0;
+  color: red;
 }

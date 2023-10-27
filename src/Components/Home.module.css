@@ -10,6 +10,7 @@
   width: 300px;
   margin-top: 10px;
   margin-left: 10px;
+  font-weight: 500;
   @media only screen and (max-width: 600px) {
     display: none;
   }
@@ -17,7 +18,7 @@
 .sidebar_header {
   display: flex;
   align-items: center;
-  margin-right: 10px;
+  padding: 8px;
 }
 .sidebar_header span {
   align-items: center;
@@ -33,21 +34,23 @@
   border: none;
   text-align: left;
   background-color: none;
-  margin-top: 10px;
-  display: inline-flex;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  margin-top: 2px;
+  width: 100%;
   /* background-color: white; */
   color: rgb(37, 37, 249);
-  padding: 3px;
+  padding: 8px;
   transition: transform 100ms ease-in;
 }
 .sidebar button:hover {
   cursor: pointer;
   background-color: lightgray;
   border-radius: 8px;
-  transform: scale(1.07);
 }
 .sidebar button span {
-  margin-left: 10px;
+  margin-left: 16px;
   color: black;
 }
 
@@ -133,4 +136,56 @@
     width: 100%;
     justify-content: center;
   }
+}
+
+.PagesIcon {
+  background-position: 0px -114px;
+  background-size: 38px 570px;
+  width: 36px;
+  height: 36px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.FriendsIcon {
+  background-position: 0 -304px;
+  background-size: 38px 570px;
+  width: 36px;
+  height: 36px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.MessengerIcon {
+  background-position: 0px 0px;
+  background-size: 38px 528px;
+  width: 36px;
+  height: 36px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.MarketIcon {
+  background-position: 0 -418px;
+  background-size: 38px 570px;
+  width: 36px;
+  height: 36px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+.VideoIcon {
+  background-position: 0 -532px;
+  background-size: 38px 570px;
+  width: 36px;
+  height: 36px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.CovidIcon {
+  background-position: 0px -342px;
+  background-size: 38px 570px;
+  width: 36px;
+  height: 36px;
+  background-repeat: no-repeat;
+  display: inline-block;
 }

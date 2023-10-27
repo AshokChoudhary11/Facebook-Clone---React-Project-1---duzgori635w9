@@ -31,6 +31,19 @@
   object-fit: cover;
   border: 2px solid #fff;
   border-radius: 50%;
+  position: relative;
+}
+.addProfileImage {
+  position: absolute;
+  left: 75%;
+  top: 45%;
+  z-index: 1;
+  padding: 6px;
+  background-color: gray;
+  border-radius: 25px;
+}
+.choose_Profile_input {
+  display: none;
 }
 
 .profileContainer {

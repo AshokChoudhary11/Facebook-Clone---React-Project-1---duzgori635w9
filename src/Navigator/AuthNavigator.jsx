@@ -1,6 +1,6 @@
 import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useAuth } from "../Provider/AuthProvider";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../Provider/hooks";
 
 export const AuthNavigator = ({ children }) => {
   const { user } = useAuth();

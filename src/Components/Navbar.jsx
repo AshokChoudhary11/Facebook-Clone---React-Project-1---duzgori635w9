@@ -29,6 +29,11 @@ function Navbar() {
       <div className={style.navbar_logo}>
         <Link to={"/"}>
           <img
+            className={style.facebookLogoname}
+            src="https://logos-world.net/wp-content/uploads/2020/05/Facebook-Logo-2019.png"
+          />
+          <img
+            className={style.logoicon}
             src="https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png"
             alt="facebook_Logo"
           />

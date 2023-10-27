@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useContext, useEffect, useRef, useState } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 import HelpIcon from "@mui/icons-material/Help";
@@ -7,16 +8,22 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { ThemeContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import style from "./Profile.module.css";
+import { useAuth } from "../Provider/hooks";
+
 export const Profile = () => {
   const [showModal, setShowModal] = useState(false);
+  const { user, setUser } = useAuth();
   const { theme, setTheme } = useContext(ThemeContext);
   const ProfileIconRef = useRef(null);
   const navigate = useNavigate();
 
-  const userDetail = JSON.parse(localStorage.getItem("userDetails") || "{}");
+  // const userDetail = JSON.parse(localStorage.getItem("userDetails") || "{}");
+  const userDetails = localStorage.getItem("userDetails");
+  const parseUserDetails = JSON.parse(userDetails);
 
   const handleLogOut = () => {
     localStorage.removeItem("userDetails");
+    setUser({});
     navigate("/login");
   };
 
@@ -48,10 +55,7 @@ export const Profile = () => {
           setShowModal(!showModal);
         }}
       >
-        <img
-          src="https://scontent.fblr22-1.fna.fbcdn.net/v/t1.6435-9/193568038_618569472433760_6264659855323861090_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=CkwNUOWYB1IAX9iEnSC&_nc_ht=scontent.fblr22-1.fna&oh=00_AfDwJmNFB_sQ_7CXWBP3rPO57zk5Mmlhf7izpmsCVZsf_A&oe=6524A4CC"
-          alt="Profile Image"
-        />
+        <img src={user?.profileImage} alt="Profile Image" />
       </section>
       {showModal && (
         <section
@@ -63,11 +67,8 @@ export const Profile = () => {
         >
           <div className="profileSection" onClick={toProfile}>
             <div className="userProfileDetails">
-              <img
-                src="https://scontent.fblr22-1.fna.fbcdn.net/v/t1.6435-9/193568038_618569472433760_6264659855323861090_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=CkwNUOWYB1IAX9iEnSC&_nc_ht=scontent.fblr22-1.fna&oh=00_AfDwJmNFB_sQ_7CXWBP3rPO57zk5Mmlhf7izpmsCVZsf_A&oe=6524A4CC"
-                alt="Profile Image"
-              />
-              <span>{userDetail?.data?.user?.name}</span>
+              <img src={user?.profileImage} alt="Profile Image" />
+              <span>{user?.name}</span>
             </div>
             <hr></hr>
             <div style={{ color: "blue", margin: "5px" }}>see all profile</div>

@@ -4,19 +4,18 @@ import style from "./NewPost.module.css";
 import VideocamOutlinedIcon from "@mui/icons-material/VideocamOutlined";
 import PhotoLibraryOutlinedIcon from "@mui/icons-material/PhotoLibraryOutlined";
 import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
-
+import TimesIcon from "../assets/times.svg";
+import { useAuth } from "../Provider/hooks";
 function NewPost() {
-  const userDetails = localStorage.getItem("userDetails");
-  const parseUserDetails = JSON.parse(userDetails);
+  const { user } = useAuth();
   const [postHeading, setPostHeading] = useState("");
   const [fileInput, setFileInput] = useState([]);
   const chooseImageInputRef = useRef();
   const [newPostImage, setNewPostImage] = useState();
   const uploadPost = async () => {
     var myHeaders = new Headers();
-    const parseUserDetails = JSON.parse(userDetails);
     myHeaders.append("projectId", "9fc41adjs85k");
-    myHeaders.append("Authorization", `Bearer ${parseUserDetails.token}`);
+    myHeaders.append("Authorization", `Bearer ${user.token}`);
 
     var formdata = new FormData();
     formdata.append("title", postHeading);
@@ -48,17 +47,14 @@ function NewPost() {
       <div className={style.postSection}>
         <div className={style.postSection_Profile}>
           <span>
-            <img
-              src="https://scontent.fblr22-1.fna.fbcdn.net/v/t1.6435-9/193568038_618569472433760_6264659855323861090_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=CkwNUOWYB1IAX9iEnSC&_nc_ht=scontent.fblr22-1.fna&oh=00_AfDwJmNFB_sQ_7CXWBP3rPO57zk5Mmlhf7izpmsCVZsf_A&oe=6524A4CC"
-              alt="pofile"
-            />
+            <img src={user.profileImage} alt="pofile" />
           </span>
           <textarea
             rows={postHeading?.split("\n").length || 1}
             className={style.postInput1}
             id="post"
             name="post"
-            placeholder={`What's on your mind ${parseUserDetails?.data?.user?.name}? `}
+            placeholder={`What's on your mind ${user?.name}? `}
             value={postHeading}
             onChange={(e) => {
               setPostHeading(e.target.value);
@@ -74,7 +70,7 @@ function NewPost() {
         </div>
 
         {newPostImage && (
-          <>
+          <div className={style.uploadImageContainer}>
             <div
               className={style.crossOnImg}
               onClick={() => {
@@ -82,10 +78,10 @@ function NewPost() {
                 setNewPostImage("");
               }}
             >
-              X
+              <img src={TimesIcon} alt="close" />
             </div>
             <img src={newPostImage} className={`${style.uploadImg}`} />
-          </>
+          </div>
         )}
         <hr></hr>
         <div className={style.AddActivity}>

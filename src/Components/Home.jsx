@@ -9,11 +9,13 @@ import VideoLibraryOutlinedIcon from "@mui/icons-material/VideoLibraryOutlined";
 import Navbar from "./Navbar";
 import AllPost from "./AllPost/AllPost";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../Provider/hooks";
+import IconSet1 from "../assets/iconSet1.png";
+import IconSet2 from "../assets/iconSet2.png";
 
 function Home() {
   const navigate = useNavigate();
-  const userDetail = JSON.parse(localStorage.getItem("userDetails") || "{}");
-  const listInnerRef = useRef();
+  const { user } = useAuth();
 
   const pages = () => {
     navigate("/pages");
@@ -32,38 +34,53 @@ function Home() {
           <Link to="/user-profile">
             <div className={style.sidebar_header}>
               <span>
-                <img
-                  src="https://scontent.fblr22-1.fna.fbcdn.net/v/t1.6435-9/193568038_618569472433760_6264659855323861090_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=CkwNUOWYB1IAX9iEnSC&_nc_ht=scontent.fblr22-1.fna&oh=00_AfDwJmNFB_sQ_7CXWBP3rPO57zk5Mmlhf7izpmsCVZsf_A&oe=6524A4CC"
-                  alt="pofile"
-                />
+                <img src={user.profileImage} alt="pofile" />
               </span>
-              <span>{userDetail?.data?.user?.name}</span>
+              <span>{user?.name}</span>
             </div>
           </Link>
           <Link to={"/page-not-found"}>
             <button>
-              <AddBoxOutlinedIcon />
+              <div
+                className={style.CovidIcon}
+                style={{ backgroundImage: `url(${IconSet2})` }}
+              />
               <span>COVID-19 Information Center</span>
             </button>
           </Link>
           <button onClick={pages}>
-            <FlagIcon />
+            <div
+              className={style.PagesIcon}
+              style={{ backgroundImage: `url(${IconSet2})` }}
+            />
             <span>Pages</span>
           </button>
           <button onClick={toDataNotFound}>
-            <PeopleIcon />
+            <div
+              className={style.FriendsIcon}
+              style={{ backgroundImage: `url(${IconSet2})` }}
+            />
             <span>Friends</span>
           </button>
           <button onClick={toDataNotFound}>
-            <ChatOutlinedIcon />
+            <div
+              className={style.MessengerIcon}
+              style={{ backgroundImage: `url(${IconSet1})` }}
+            />
             <span>Messanger</span>
           </button>
           <button>
-            <StorefrontIcon />
+            <div
+              className={style.MarketIcon}
+              style={{ backgroundImage: `url(${IconSet2})` }}
+            />
             <span>Marketplace</span>
           </button>
           <button onClick={toDataNotFound}>
-            <VideoLibraryOutlinedIcon />
+            <div
+              className={style.VideoIcon}
+              style={{ backgroundImage: `url(${IconSet2})` }}
+            />
             <span>Videos</span>
           </button>
         </aside>

@@ -60,7 +60,9 @@ const AllUploadPost = () => {
     >
       <NewPost />
       {postDetail &&
-        postDetail.map((post) => <SingleUplodedPost item={post} />)}
+        postDetail.map((post, index) => (
+          <SingleUplodedPost key={index} item={post} />
+        ))}
     </div>
   );
 };

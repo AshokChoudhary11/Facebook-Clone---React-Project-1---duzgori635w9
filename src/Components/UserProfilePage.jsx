@@ -1,35 +1,46 @@
 // @ts-nocheck
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "./Navbar";
 import style from "./UserProfilePage.module.css";
 import AllUploadPost from "./AllUploadPost/AllUploadPost";
 import InfoContainer from "./UserProfileComponents/InfoContainer/InfoContainer";
+import AddAPhotoRoundedIcon from "@mui/icons-material/AddAPhotoRounded";
+import { useAuth } from "../Provider/hooks";
 
 const UserProfilePage = () => {
   const userDetails = localStorage.getItem("userDetails");
   const parseUserDetails = JSON.parse(userDetails);
-  const [user, setUser] = useState();
-  const handleFetchUserDetails = async () => {
-    if (parseUserDetails.data) {
-      fetch(
-        `https://academics.newtonschool.co/api/v1/facebook/user/${parseUserDetails.data.user._id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${parseUserDetails.token}`,
-            projectId: "9fc41adjs85k",
-          },
-        }
-      )
-        .then((data) => data.json())
-        .then((data) => setUser(data.data));
-    }
+  const { user, setUser } = useAuth();
+  const [fileInput, setFileInput] = useState([]);
+  const [profileImage, setProfileImage] = useState("");
+  const choseProfileImageRef = useRef();
+
+  const handleProfileImage = async () => {
+    if (profileImage) {
+      const form = new FormData();
+      form.append("profileImage", fileInput[0], "profileImage.jpg");
+
+      if (parseUserDetails.data) {
+        fetch(
+          `https://academics.newtonschool.co/api/v1/user/updateProfileImage`,
+          {
+            method: "PATCH",
+            headers: {
+              Authorization: `Bearer ${parseUserDetails.token}`,
+              projectId: "9fc41adjs85k",
+            },
+            body: form,
+          }
+        )
+          .then((data) => data.json())
+          .then((data) => setUser(data.data.user));
+      }
+    } else return;
   };
 
   useEffect(() => {
-    handleFetchUserDetails();
-  }, []);
+    handleProfileImage();
+  }, [profileImage]);
 
   if (!user) {
     return null;
@@ -40,16 +51,34 @@ const UserProfilePage = () => {
       <section className={style.coverPage}>
         <div className={style.coverImg}>
           <img
-            src="https://scontent.fblr22-1.fna.fbcdn.net/v/t1.6435-9/193568038_618569472433760_6264659855323861090_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=CkwNUOWYB1IAX9iEnSC&_nc_ht=scontent.fblr22-1.fna&oh=00_AfDwJmNFB_sQ_7CXWBP3rPO57zk5Mmlhf7izpmsCVZsf_A&oe=6524A4CC"
+            src="https://fontawesome.com/social/male?f=classic&s=&v=5"
             alt="Profile Image"
           />
         </div>
         <div className={style.profileWrapper}>
           <div className={style.profile}>
             <div className={style.profileImageWrapper}>
-              <img
-                src="https://scontent.fblr22-1.fna.fbcdn.net/v/t1.6435-9/193568038_618569472433760_6264659855323861090_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=CkwNUOWYB1IAX9iEnSC&_nc_ht=scontent.fblr22-1.fna&oh=00_AfDwJmNFB_sQ_7CXWBP3rPO57zk5Mmlhf7izpmsCVZsf_A&oe=6524A4CC"
-                alt="Profile Image"
+              <img src={user.profileImage} alt="Profile Image" />
+              <button
+                className={style.addProfileImage}
+                onClick={() => {
+                  if (choseProfileImageRef.current && !fileInput?.length) {
+                    choseProfileImageRef.current.click();
+                    handleProfileImage();
+                  }
+                }}
+              >
+                <AddAPhotoRoundedIcon />
+              </button>
+              <input
+                type="file"
+                ref={choseProfileImageRef}
+                className={style.choose_Profile_input}
+                onChange={(e) => {
+                  setFileInput(e.target.files ?? []);
+                  setProfileImage(URL.createObjectURL(e.target.files[0]));
+                }}
+                accept="image/*"
               />
             </div>
             <div className={style.profileContainer}>

@@ -4,6 +4,7 @@ import SinglePost from "../SinglePost/SinglePost";
 import style from "./AllPost.module.css";
 import NewPost from "../NewPost";
 import AllStory from "../Story/AllStory";
+import AllUploadPost from "../AllUploadPost/AllUploadPost";
 
 const AllPost = () => {
   const [postDetail, setPostDetails] = useState([]);
@@ -55,7 +56,8 @@ const AllPost = () => {
       ref={listInnerRef}
       className={style.all_post_container}
     >
-      <NewPost />
+      {/* <NewPost /> */}
+      <AllUploadPost />
       {postDetail && postDetail.map((post) => <SinglePost item={post} />)}
     </div>
   );

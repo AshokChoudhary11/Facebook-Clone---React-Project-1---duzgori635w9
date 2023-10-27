@@ -44,6 +44,7 @@ const SingleChannelPage = () => {
         return;
       }
       setPostDetails([...postDetail, ...parseData.data]);
+      console.log("postDetail", parseData.data);
       setPrevPage(currPage);
     };
     if (currPage !== prevPage && !wasLastList) {
@@ -64,13 +65,16 @@ const SingleChannelPage = () => {
           display: "flex",
           flexDirection: "column",
           gap: "10px",
-          height: "calc(100% - 68px)",
+          // height: "calc(100% - 68px)",
           margin: "auto",
           overflow: "scroll",
           overscrollBehavior: "contain",
         }}
       >
-        {postDetail && postDetail.map((post) => <SinglePost item={post} />)}
+        {postDetail &&
+          postDetail.map((post, index) => (
+            <SinglePost item={post} key={index} />
+          ))}
       </div>
     </>
   );
