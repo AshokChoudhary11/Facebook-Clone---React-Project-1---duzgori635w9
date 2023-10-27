@@ -189,3 +189,16 @@
   background-repeat: no-repeat;
   display: inline-block;
 }
+/* .advertise {
+  width: 300px;
+  border: 2px solid #ddd;
+  margin-top: 10px;
+  margin-right: 20px;
+  border-radius: 8px;
+  padding: 5px;
+}
+@media only screen and (max-width: 600px) {
+  .advertise {
+    display: none;
+  }
+} */

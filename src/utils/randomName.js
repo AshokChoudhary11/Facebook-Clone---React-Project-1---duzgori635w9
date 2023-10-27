@@ -17,3 +17,7 @@ export function generateRandomName() {
   const randomName = names[randomIndex];
   return randomName;
 }
+
+export function fixedRandomName(index) {
+  return names[index % names.length];
+}

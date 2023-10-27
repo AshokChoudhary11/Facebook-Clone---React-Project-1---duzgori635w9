@@ -58,7 +58,13 @@ const UserProfilePage = () => {
         <div className={style.profileWrapper}>
           <div className={style.profile}>
             <div className={style.profileImageWrapper}>
-              <img src={user.profileImage} alt="Profile Image" />
+              <img
+                src={
+                  user.profileImage ||
+                  "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+                }
+                alt="Profile Image"
+              />
               <button
                 className={style.addProfileImage}
                 onClick={() => {

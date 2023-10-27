@@ -24,3 +24,8 @@
   margin: auto;
   border-radius: 8px;
 }
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin: auto;
+}

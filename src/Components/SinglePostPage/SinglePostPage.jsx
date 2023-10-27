@@ -1,17 +1,9 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
 import style from "./SinglePostPage.module.css";
-import {
-  ThumbUpOutlined,
-  CommentOutlined,
-  ShareOutlined,
-  ThumbUp,
-  CommentRounded,
-} from "@mui/icons-material";
+import { CommentRounded } from "@mui/icons-material";
 import SendIcon from "@mui/icons-material/Send";
-import ZoomInIcon from "@mui/icons-material/ZoomIn";
-import ZoomOutIcon from "@mui/icons-material/ZoomOut";
-import ZoomOutMapIcon from "@mui/icons-material/ZoomOutMap";
+
 import { useNavigate, useParams } from "react-router-dom";
 import { timePassedFromTimestamp } from "../../utils/time";
 import ShareIcon from "../../assets/share.svg";
@@ -21,6 +13,7 @@ import LikedIcon from "../../assets/liked.svg";
 import LikeCount from "../../assets/likeCount.svg";
 import LoadingComponent from "../../Loading";
 import Page404 from "../404Page";
+import { useAuth } from "../../Provider/hooks";
 
 const SinglePostPage = () => {
   const params = useParams();
@@ -34,6 +27,7 @@ const SinglePostPage = () => {
   const [commentscount, setCommentsCount] = useState(0);
   const [typeComment, setTypeComment] = useState();
   const [selfLike, setSelfLike] = useState(false);
+  const { user } = useAuth();
 
   const fetchPostDetail = async () => {
     setLoading(true);
@@ -238,7 +232,10 @@ const SinglePostPage = () => {
                 <div class="bg-white dark:bg-gray-800 text-black dark:text-gray-200 p-1 antialiased flex max-w-lg">
                   <img
                     class="rounded-full h-8 w-8 mr-2 mt-2 "
-                    src={postData.author.profileImage}
+                    src={
+                      user.profileImage ||
+                      "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+                    }
                   />
                   <div>
                     <div class="bg-gray-100 dark:bg-gray-700 rounded-3xl px-4 pt-2 pb-2.5">
@@ -261,7 +258,10 @@ const SinglePostPage = () => {
           <div className={style.typeComment}>
             <img
               class="rounded-full h-8 w-8 mr-2 mt-2 "
-              src={postData.author.profileImage}
+              src={
+                user.profileImage ||
+                "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+              }
             />
             <textarea
               rows={typeComment?.split("\n").length || 1}

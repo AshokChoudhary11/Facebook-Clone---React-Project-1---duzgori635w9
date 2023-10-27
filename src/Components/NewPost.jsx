@@ -47,7 +47,13 @@ function NewPost() {
       <div className={style.postSection}>
         <div className={style.postSection_Profile}>
           <span>
-            <img src={user.profileImage} alt="pofile" />
+            <img
+              src={
+                user.profileImage ||
+                "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+              }
+              alt="pofile"
+            />
           </span>
           <textarea
             rows={postHeading?.split("\n").length || 1}

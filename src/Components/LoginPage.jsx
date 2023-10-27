@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import style from "./LoginPage.module.css";
 import { Navigate, useNavigate } from "react-router-dom";

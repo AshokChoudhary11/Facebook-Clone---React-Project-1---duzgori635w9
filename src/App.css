@@ -52,6 +52,13 @@ body {
 .profile {
   position: relative;
 }
+.profile img {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  max-width: none;
+  border-radius: 25px;
+}
 
 .useProfile {
   z-index: 1;
@@ -83,6 +90,13 @@ body {
   align-items: center;
   padding: 5px;
   gap: 10px;
+}
+.userProfileDetails img {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  max-width: none;
+  border-radius: 25px;
 }
 .buttons {
   display: flex;

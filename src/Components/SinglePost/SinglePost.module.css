@@ -23,7 +23,7 @@
   align-items: center;
   margin-right: 10px;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 500;
 }
 .profile img {
   width: 30px;
@@ -54,6 +54,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .LikeCommentShare button:hover {
   background-color: rgb(238, 238, 238);
 }
@@ -62,4 +63,16 @@
   margin-left: 10px;
   align-items: center;
   margin-right: 4px;
+}
+.postBottomButton img {
+  width: 24px;
+}
+
+.LikeCountContainer {
+  display: flex;
+  gap: 6px;
+}
+
+.LikeCountContainerHR {
+  border: 1px solid #ced0d4;
 }

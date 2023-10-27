@@ -73,7 +73,7 @@ const SingleChannelPage = () => {
       >
         {postDetail &&
           postDetail.map((post, index) => (
-            <SinglePost item={post} key={index} />
+            <SinglePost item={post} key={index} index={index} />
           ))}
       </div>
     </>

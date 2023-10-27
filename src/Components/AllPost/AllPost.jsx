@@ -58,7 +58,10 @@ const AllPost = () => {
     >
       {/* <NewPost /> */}
       <AllUploadPost />
-      {postDetail && postDetail.map((post) => <SinglePost item={post} />)}
+      {postDetail &&
+        postDetail.map((post, index) => (
+          <SinglePost item={post} index={index} />
+        ))}
     </div>
   );
 };

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useRef, useState } from "react";
 import style from "./Home.module.css";
 import FlagIcon from "@mui/icons-material/Flag";
@@ -23,6 +24,9 @@ function Home() {
   const toDataNotFound = () => {
     navigate("/page-not-found");
   };
+  const toMarketPlace = () => {
+    navigate("/store");
+  };
   return (
     <>
       <header>
@@ -34,7 +38,13 @@ function Home() {
           <Link to="/user-profile">
             <div className={style.sidebar_header}>
               <span>
-                <img src={user.profileImage} alt="pofile" />
+                <img
+                  src={
+                    user.profileImage ||
+                    "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+                  }
+                  alt="pofile"
+                />
               </span>
               <span>{user?.name}</span>
             </div>
@@ -69,7 +79,7 @@ function Home() {
             />
             <span>Messanger</span>
           </button>
-          <button>
+          <button onClick={toMarketPlace}>
             <div
               className={style.MarketIcon}
               style={{ backgroundImage: `url(${IconSet2})` }}
@@ -89,6 +99,17 @@ function Home() {
         </main>
         <aside className={style.advertise}>
           <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource116/v4/67/08/1a/67081aea-e8de-60d0-9d45-13b6d1dccadc/436e9e8e-2dfc-47b5-adaa-2638bb96b3c9_Poster_Maker_-_Screenshot_6.5_-_2.jpg/300x0w.jpg" />
+          {/* <aside className={style.advertise}>
+            <iframe
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FCleverProgrammerr%2F&tabs=timeline&width=300&height=1500&small_header=false&adapt_container_width=true&hide_cover=false&showfacepile=true&appId"
+              width="340"
+              height="100%"
+              style={{ border: "none", overflow: "hidden" }}
+              allow="encrypted-media"
+              title="ad"
+            ></iframe>
+                    
+          </aside> */}
         </aside>
       </main>
     </>

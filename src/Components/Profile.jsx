@@ -55,7 +55,13 @@ export const Profile = () => {
           setShowModal(!showModal);
         }}
       >
-        <img src={user?.profileImage} alt="Profile Image" />
+        <img
+          src={
+            user?.profileImage ||
+            "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+          }
+          alt="Profile Image"
+        />
       </section>
       {showModal && (
         <section
@@ -67,7 +73,13 @@ export const Profile = () => {
         >
           <div className="profileSection" onClick={toProfile}>
             <div className="userProfileDetails">
-              <img src={user?.profileImage} alt="Profile Image" />
+              <img
+                src={
+                  user?.profileImage ||
+                  "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+                }
+                alt="Profile Image"
+              />
               <span>{user?.name}</span>
             </div>
             <hr></hr>
