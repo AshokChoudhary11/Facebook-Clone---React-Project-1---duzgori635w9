@@ -39,7 +39,7 @@ function Navbar() {
           />
         </Link>
         <div className={style.navbar_search}>
-          <input type="text" placeholder="Search" disabled />
+          <input type="text" placeholder="Search" />
         </div>
         <div className={style.navbar_mobile_profile}>
           {" "}
@@ -75,15 +75,22 @@ function Navbar() {
         </NavLink>
       </div>
       <div className={style.navbar_buttons}>
-        <button disabled>
-          <AddIcon />
-        </button>
-        <button disabled>
-          <ForumIcon />
-        </button>
-        <button disabled>
-          <NotificationsActiveIcon />
-        </button>
+        <NavLink to="/page-not-found">
+          <button>
+            <AddIcon />
+          </button>
+        </NavLink>
+        <NavLink to="/page-not-found">
+          <button>
+            <ForumIcon />
+          </button>
+        </NavLink>
+        <NavLink to="/page-not-found">
+          <button>
+            <NotificationsActiveIcon />
+          </button>
+        </NavLink>
+
         <Profile />
       </div>
     </nav>
