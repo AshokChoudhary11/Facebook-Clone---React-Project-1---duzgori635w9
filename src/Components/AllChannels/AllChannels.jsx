@@ -11,6 +11,7 @@ const AllChannels = ({ newPages = [] }) => {
   const [wasLastList, setWasLastList] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  console.log(postDetail)
 
   const listInnerRef = useRef();
 

@@ -24,6 +24,9 @@ function Navbar() {
   const toPage = () => {
     navigate("/pages");
   };
+  const tofeatureUpdateSoon = () => {
+    navigate("/page-not-found");
+  };
   return (
     <nav className={style.navbar}>
       <div className={style.navbar_logo}>
@@ -39,7 +42,7 @@ function Navbar() {
           />
         </Link>
         <div className={style.navbar_search}>
-          <input type="text" placeholder="Search" />
+          <input type="text" placeholder="Search" onClick={tofeatureUpdateSoon}/>
         </div>
         <div className={style.navbar_mobile_profile}>
           {" "}

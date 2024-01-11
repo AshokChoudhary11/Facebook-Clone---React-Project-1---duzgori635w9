@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
 import style from "./SingleChannel.module.css";
-import {
-  ThumbUpOutlined,
-  CommentOutlined,
-  ShareOutlined,
-} from "@mui/icons-material";
-import { Link, json } from "react-router-dom";
 
 const SingleChannel = ({ item }) => {
   return (

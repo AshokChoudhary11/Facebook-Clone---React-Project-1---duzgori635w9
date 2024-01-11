@@ -16,6 +16,7 @@ import LikedIcon from "../../assets/liked.svg";
 import LikeCount from "../../assets/likeCount.svg";
 
 const SinglePost = ({ item, index = 0 }) => {
+  // console.log(item);
   const userDetail = JSON.parse(localStorage.getItem("userDetails") || "{}");
   const [like, setLike] = useState(item?.likeCount || 0);
   const [selfLike, setSelfLike] = useState(false);
@@ -93,9 +94,9 @@ const SinglePost = ({ item, index = 0 }) => {
               className={style.PostImage}
             />
           )}
-          {item?.images?.length > 0 && (
+          {/* {item?.images?.length > 0 && (
             <img src={item.images[0]} alt="image" className={style.PostImage} />
-          )}
+          )} */}
         </>
       </Link>
       <div className={style.LikeCommentShareCount}></div>

@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
 import style from "./SingleChannel.module.css";
-import {
-  ThumbUpOutlined,
-  CommentOutlined,
-  ShareOutlined,
-} from "@mui/icons-material";
-import { Link, json } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 
 const SingleChannel = ({ item }) => {
-  const userDetail = JSON.parse(localStorage.getItem("userDetails") || "{}");
-  const [like, setLike] = useState(item?.likeCount || 0);
+  console.log(item)
 
   return (
     <Link to={`/all-pages/${item._id}/`}>
       <section className={style.pageContainer}>
         <div className={style.coverImage}>
           <img src={item.image} alt="pageProfile" />
+          
         </div>
         <div className={style.pageContant}>
           <div className={style.PageProfile}>
