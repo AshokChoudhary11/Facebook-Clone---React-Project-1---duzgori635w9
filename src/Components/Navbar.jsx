@@ -47,7 +47,7 @@ function Navbar() {
             <input type="text" placeholder="Search" onClick={tofeatureUpdateSoon}/>
           </div>
           <div className={style.navSearchIcon}>
-            <SearchIcon />
+            <SearchIcon onClick={tofeatureUpdateSoon}/>
           </div>
           <div className={style.navbar_mobile_profile}>
             {" "}

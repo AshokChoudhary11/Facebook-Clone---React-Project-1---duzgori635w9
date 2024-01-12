@@ -126,6 +126,7 @@
   }
   .navSearchIcon {
     display: block;
+    cursor: pointer;
   }
   .search_and_profile {
     display: flex;
