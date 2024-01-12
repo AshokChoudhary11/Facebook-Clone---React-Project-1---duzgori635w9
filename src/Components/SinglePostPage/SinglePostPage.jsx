@@ -176,7 +176,7 @@ const SinglePostPage = () => {
             </div> */}
           </div>
           <img
-            src={postData.channel.image}
+            src={postData.channel?.image}
             alt="image"
             className={style.PostImage}
           />
