@@ -30,7 +30,7 @@ const AllChannels = ({ newPages = [] }) => {
       setError(false);
       try {
         const responce = await fetch(
-          `https://academics.newtonschool.co/api/v1/facebook/channel/?limit=10&page=${prevPage}`,
+          `https://academics.newtonschool.co/api/v1/facebook/channel?limit=1000&page=${prevPage}`,
           {
             method: "GET",
             headers: {
@@ -45,7 +45,7 @@ const AllChannels = ({ newPages = [] }) => {
           console.log(parseData.message || "post not fetch");
           return;
         }
-        if (parseData.data.length == 0) {
+        if (parseData.data.length === 0) {
           setLoading(false);
           setWasLastList(true);
           return;

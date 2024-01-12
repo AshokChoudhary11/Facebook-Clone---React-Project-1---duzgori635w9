@@ -40,6 +40,9 @@
   margin: 0px 0 0 10px;
   cursor: pointer;
 }
+.navSearchIcon {
+  display: none;
+}
 
 .navbar_icons button {
   background-color: white;
@@ -119,7 +122,14 @@
 
 @media only screen and (max-width: 600px) {
   .navbar_search input {
-    /* display: none; */
+    display: none;
+  }
+  .navSearchIcon {
+    display: block;
+  }
+  .search_and_profile {
+    display: flex;
+    gap: 16px;
   }
   .logoicon {
     display: none;

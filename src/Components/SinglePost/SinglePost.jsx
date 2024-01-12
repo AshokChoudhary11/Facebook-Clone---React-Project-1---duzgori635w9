@@ -87,16 +87,16 @@ const SinglePost = ({ item, index = 0 }) => {
             <span>{item.author.name || fixedRandomName(index)}</span>
           </div>
           <p>{item.content}</p>
-          {item.channel?.image && (
+          {/* {item.channel?.image && (
             <img
               src={item.channel.image}
               alt="image"
               className={style.PostImage}
             />
-          )}
-          {/* {item?.images?.length > 0 && (
-            <img src={item.images[0]} alt="image" className={style.PostImage} />
           )} */}
+          {item?.images?.length > 0 && (
+            <img src={item.images[0]} alt="image" className={style.PostImage} />
+          )}
         </>
       </Link>
       <div className={style.LikeCommentShareCount}></div>

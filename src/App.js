@@ -35,7 +35,14 @@ function App() {
               <AuthNavigator>
                 <Home />
               </AuthNavigator>
-              // <Home />
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <AuthNavigator>
+                <Home />
+              </AuthNavigator>
             }
           />
 
@@ -47,7 +54,7 @@ function App() {
           <Route path="/post/:postID" element={<SinglePostPage />} />
           <Route path="/user-profile" element={<UserProfilePage />} />
           <Route path="/all-pages/:channelID" element={<SingleChannelPage />} />
-          <Route path="/page-not-found" element={<DataNotAvailable />} />
+          <Route path="*" element={<DataNotAvailable />} />
         </Routes>
       </ThemeContext.Provider>
     </AuthProvider>

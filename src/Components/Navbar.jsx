@@ -8,6 +8,7 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import PeopleIcon from "@mui/icons-material/People";
 import AddIcon from "@mui/icons-material/Add";
 import ForumIcon from "@mui/icons-material/Forum";
+import SearchIcon from '@mui/icons-material/Search';
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import { Profile } from "./Profile";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -41,12 +42,17 @@ function Navbar() {
             alt="facebook_Logo"
           />
         </Link>
-        <div className={style.navbar_search}>
-          <input type="text" placeholder="Search" onClick={tofeatureUpdateSoon}/>
-        </div>
-        <div className={style.navbar_mobile_profile}>
-          {" "}
-          <Profile />
+        <div className={style.search_and_profile}>
+          <div className={style.navbar_search}>
+            <input type="text" placeholder="Search" onClick={tofeatureUpdateSoon}/>
+          </div>
+          <div className={style.navSearchIcon}>
+            <SearchIcon />
+          </div>
+          <div className={style.navbar_mobile_profile}>
+            {" "}
+            <Profile />
+          </div>
         </div>
       </div>
 
@@ -61,7 +67,7 @@ function Navbar() {
             <FlagIcon />
           </button>
         </NavLink>
-        <NavLink to="/page-not-found">
+        <NavLink to="/video">
           <button>
             <OndemandVideoIcon />
           </button>
@@ -71,24 +77,24 @@ function Navbar() {
             <StorefrontIcon />
           </button>
         </NavLink>
-        <NavLink to="/page-not-found">
+        <NavLink to="/friends">
           <button>
             <PeopleIcon />
           </button>
         </NavLink>
       </div>
       <div className={style.navbar_buttons}>
-        <NavLink to="/page-not-found">
+        <NavLink to="/home">
           <button>
             <AddIcon />
           </button>
         </NavLink>
-        <NavLink to="/page-not-found">
+        <NavLink to="/forum">
           <button>
             <ForumIcon />
           </button>
         </NavLink>
-        <NavLink to="/page-not-found">
+        <NavLink to="/notifications">
           <button>
             <NotificationsActiveIcon />
           </button>
