@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./SingleUplodedPost.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { timePassedFromTimestamp } from "../../utils/time";
@@ -14,9 +14,28 @@ const SingleUplodedPost = ({ item }) => {
   const userDetail = JSON.parse(localStorage.getItem("userDetails") || "{}");
   const [like, setLike] = useState(item?.likeCount || 0);
   const [selfLike, setSelfLike] = useState(false);
+  const [userDetails , setUserDetails] = useState();
   const { user } = useAuth();
   const navigate = useNavigate();
-
+  const getUserDetails= async() => {
+    const responce = await fetch(
+      `https://academics.newtonschool.co/api/v1/facebook/user/${item.author}`,
+      {
+        method: "GET",
+        headers: {
+          projectId: "duzgori635w9",
+          Authorization: `Bearer ${userDetail.token}`,
+        },
+      }
+    );
+    const parseData = await responce.json();
+    if (responce.status >= 400) {
+      console.log(parseData.message || "post not fetch");
+      return;
+    }
+    setUserDetails(parseData.data);
+    console.log("parseData.data", parseData.data);
+  }
   const handleLike = async () => {
     const responce = await fetch(
       `https://academics.newtonschool.co/api/v1/facebook/like/${item?._id}`,
@@ -62,6 +81,9 @@ const SingleUplodedPost = ({ item }) => {
   const handleComment = () => {
     navigate(`/post/${item._id}/`);
   };
+  useEffect(()=>{
+    getUserDetails();
+  },[])
 
   return (
     <div className={style.SinglePost_container}>
@@ -70,21 +92,21 @@ const SingleUplodedPost = ({ item }) => {
           <span>
             <img
               src={
-                user.profileImage ||
+                userDetails?.profileImage ||
                 "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
               }
               alt="pofile"
             ></img>
           </span>
           <span>
-            <div>{userDetail?.data?.user?.name}</div>
+            <div>{userDetails?.name}</div>
             <div className={style.CreatedTime}>
               {timePassedFromTimestamp(item.createdAt)}
             </div>
           </span>
         </div>
         <Link to={`/post/${item?._id}/`}>
-          <p>{item.content}</p>
+          <p>{item.content}</p> 
           {item.images?.length && (
             <img src={item.images[0]} alt="image" className={style.PostImage} />
           )}

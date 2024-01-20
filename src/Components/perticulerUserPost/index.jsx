@@ -1,12 +1,14 @@
 // @ts-nocheck
 import React, { useEffect, useRef, useState } from "react";
-import SinglePost from "../SinglePost/SinglePost";
-import style from "./AllPost.module.css";
+import style from "../AllUploadPost/AllUploadPost.module.css";
 import NewPost from "../NewPost";
 import AllStory from "../Story/AllStory";
-import AllUploadPost from "../AllUploadPost/AllUploadPost";
+import SingleUplodedPost from "../UplodedPost/SingleUplodedPost";
 
-const AllPost = () => {
+const PerticulerUserPost = ({userId}) => {
+  const userDetails = localStorage.getItem("userDetails");
+  const parseUserDetails = JSON.parse(userDetails);
+
   const [postDetail, setPostDetails] = useState([]);
   const [currPage, setCurrPage] = useState(1);
   const [prevPage, setPrevPage] = useState(0);
@@ -25,7 +27,7 @@ const AllPost = () => {
   useEffect(() => {
     const handelPost = async () => {
       const responce = await fetch(
-        `https://academics.newtonschool.co/api/v1/facebook/post/?limit=10&page=${prevPage}`,
+        `https://academics.newtonschool.co/api/v1/facebook/user/${userId}/posts?limit=10&page=${prevPage}`,
         {
           method: "GET",
           headers: {
@@ -56,14 +58,13 @@ const AllPost = () => {
       ref={listInnerRef}
       className={style.all_post_container}
     >
-      {/* <NewPost /> */}
-      <AllUploadPost />
+      <NewPost />
       {postDetail &&
         postDetail.map((post, index) => (
-          <SinglePost key={index} item={post} index={index} />
+          <SingleUplodedPost key={index} item={post} />
         ))}
     </div>
   );
 };
 
-export default AllPost;
+export default PerticulerUserPost;

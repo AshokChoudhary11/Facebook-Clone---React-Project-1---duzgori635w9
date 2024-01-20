@@ -65,28 +65,28 @@ const SinglePost = ({ item, index = 0 }) => {
     setSelfLike(false);
   };
   const handleComment = () => {
-    navigate(`/post/${item._id}/`);
+    navigate(`/post/${item?._id}/`);
   };
 
   return (
     <div className={style.SinglePost_container}>
-      <Link to={`/post/${item._id}/`}>
+      <Link to={`/post/${item?._id}/`}>
         <>
           <div className={style.profile}>
             <span>
-              {item.author.profileImage && (
+              {item?.author?.profileImage && (
                 <img
                   src={
-                    item.author.profileImage ||
+                    item?.author?.profileImage ||
                     "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
                   }
                   alt="pofile"
                 ></img>
               )}
             </span>
-            <span>{item.author.name || fixedRandomName(index)}</span>
+            <span>{item?.author?.name || fixedRandomName(index)}</span>
           </div>
-          <p>{item.content}</p>
+          <p>{item?.content}</p>
           {/* {item.channel?.image && (
             <img
               src={item.channel.image}
@@ -117,7 +117,7 @@ const SinglePost = ({ item, index = 0 }) => {
         <button onClick={handleComment} className={style.postBottomButton}>
           <img src={CommentIcon} alt="comment" />
           <span>Comments</span>
-          {item.commentCount}
+          {item?.commentCount}
         </button>
         {/* </Link> */}
         <button className={style.postBottomButton}>

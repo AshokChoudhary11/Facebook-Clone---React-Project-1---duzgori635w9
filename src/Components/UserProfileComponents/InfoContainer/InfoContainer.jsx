@@ -83,23 +83,28 @@ export default function InfoContainer({ user }) {
       <div className={style.userDetails_info_row_container}>
         <SchoolIcon />
         <span>
-          Studied at {user?.education?.[0]?.schoolName || "Royal Oak School"}
+          Studied at <b>{user?.education?.[0]?.schoolName || "Royal Oak School"}</b>
         </span>
       </div>
       <div className={style.userDetails_info_row_container}>
         <HouseIcon />
-        <span>Lives in {user?.address?.country || "India"}</span>
+        <span>
+          Lives in{" "}
+          <b>{user?.address[0]?.street
+            ? `${user?.address[0]?.street}, ${user?.address[0]?.city}`
+            : "India" || "India"}</b>
+        </span>
       </div>
       <div className={style.userDetails_info_row_container}>
         <LocationOnIcon />
-        <span>From {user?.address?.city || "Japiur"}</span>
+        <span>From <b>{user?.address[0]?.state || "Japiur"}</b></span>
       </div>
 
       <div className={style.userDetails_info_row_container}>
         <WatchLaterIcon />
         <span>
-          Joined on {new Date(user.createdAt).getMonth()}/{" "}
-          {new Date(user.createdAt).getFullYear()}
+          Joined on <b>{new Date(user?.createdAt).getMonth()+1}/{" "}
+          {new Date(user?.createdAt).getFullYear()}</b>
         </span>
       </div>
     </div>

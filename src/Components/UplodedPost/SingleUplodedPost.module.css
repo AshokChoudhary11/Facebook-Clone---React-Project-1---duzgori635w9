@@ -24,9 +24,14 @@
   font-size: 20px;
   font-weight: 500;
 }
+p{
+  font-weight: lighter;
+  text-align: left;
+}
 .CreatedTime {
   font-size: 10px;
   color: gray;
+  text-align: left;
 }
 .profile img {
   width: 30px;

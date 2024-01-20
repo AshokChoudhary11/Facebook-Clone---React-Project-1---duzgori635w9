@@ -16,6 +16,8 @@
 .navbar_logo {
   display: inline-flex;
   align-items: center;
+  position: relative;
+
   @media only screen and (max-width: 600px) {
     width: 100%;
     justify-content: space-between;
@@ -30,7 +32,54 @@
 .facebookLogoname {
   display: none;
 }
+.navbar_search{
+}
+.modal {
+  position: absolute;
+  top: 100%;
+  left: -10px;
+  width: 100%;
+  height: 400px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 10;
+  overflow: scroll;
+}
 
+ul.searchResults {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.searchResults li {
+  padding: 2px 10px;
+  cursor: pointer;
+}
+ul.searchResults li:hover {
+  background-color: rgb(186, 186, 186);
+  transition: 0.5s;
+}
+.serchList{
+  display: flex;
+  align-items: center;
+}
+.userProfile{
+  width: 32px;
+  height: 32px;
+  margin-right: 14px;
+}
+.userProfile img{
+  border-radius: 50px;
+}
+.friend{
+  font-size: 12px;
+  color: gray;
+}
+ul.searchResults li:last-child {
+  border-bottom: none;
+}
 .navbar_search input {
   padding: 6px 12px;
   border: 1px solid #ddd;
@@ -128,6 +177,7 @@
     display: block;
     cursor: pointer;
   }
+  
   .search_and_profile {
     display: flex;
     gap: 16px;

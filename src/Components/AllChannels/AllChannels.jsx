@@ -4,6 +4,8 @@ import SingleChannel from "../SingleChannel/SingleChannel";
 // import style from "../AllChannels/AllChannels.module.css";
 import LoadingComponent from "../../Loading";
 import Page404 from "../404Page";
+
+
 const AllChannels = ({ newPages = [] }) => {
   const [postDetail, setPostDetails] = useState([]);
   const [currPage, setCurrPage] = useState(1);
@@ -11,7 +13,7 @@ const AllChannels = ({ newPages = [] }) => {
   const [wasLastList, setWasLastList] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  console.log(postDetail)
+  // console.log(postDetail)
 
   const listInnerRef = useRef();
 
@@ -86,7 +88,7 @@ const AllChannels = ({ newPages = [] }) => {
           justifyContent: "center",
         }}
       >
-        {postDetail && postDetail.map((post) => <SingleChannel item={post} />)}
+        {postDetail && postDetail.map((post, index) => <SingleChannel item={post} key={index}/>)}
       </div>
       {loading && <LoadingComponent />}
     </>

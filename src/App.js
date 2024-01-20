@@ -15,6 +15,8 @@ import StoreChannel from "./Components/StoreChannel/StoreChannel";
 import SinglePostPage from "./Components/SinglePostPage/SinglePostPage";
 import UserProfilePage from "./Components/UserProfilePage";
 import DataNotAvailable from "./Components/DataNotAvailable/DataNotAvailable";
+import Usersdetails from "./Components/usersDetails";
+
 export const ThemeContext = createContext();
 function App() {
   const [theme, setTheme] = useState("light");
@@ -54,6 +56,7 @@ function App() {
           <Route path="/post/:postID" element={<SinglePostPage />} />
           <Route path="/user-profile" element={<UserProfilePage />} />
           <Route path="/all-pages/:channelID" element={<SingleChannelPage />} />
+          <Route path="/UsersDetails/:userId" element={<Usersdetails />} />
           <Route path="*" element={<DataNotAvailable />} />
         </Routes>
       </ThemeContext.Provider>
