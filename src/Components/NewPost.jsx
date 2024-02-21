@@ -6,12 +6,16 @@ import PhotoLibraryOutlinedIcon from "@mui/icons-material/PhotoLibraryOutlined";
 import SentimentSatisfiedOutlinedIcon from "@mui/icons-material/SentimentSatisfiedOutlined";
 import TimesIcon from "../assets/times.svg";
 import { useAuth } from "../Provider/hooks";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function NewPost() {
   const { user } = useAuth();
   const [postHeading, setPostHeading] = useState("");
   const [fileInput, setFileInput] = useState([]);
   const chooseImageInputRef = useRef();
   const [newPostImage, setNewPostImage] = useState();
+
   const uploadPost = async () => {
     var myHeaders = new Headers();
     myHeaders.append("projectId", "9fc41adjs85k");
@@ -20,27 +24,64 @@ function NewPost() {
     var formdata = new FormData();
     formdata.append("title", postHeading);
     formdata.append("content", postHeading);
-    formdata.append("images", fileInput[0], "abc-abc.jpg");
+    // formdata.append("images", fileInput[0], "abc-abc.jpg");
+    if (fileInput.length > 0) {
+      const selectedFile = fileInput[0];
+  
+      if (selectedFile instanceof Blob) {
+        formdata.append("images", selectedFile, "abc-abc.jpg");
+      } else {
+        console.error("Selected file is not a Blob");
+        return;
+      }
+    }
 
     var requestOptions = {
       method: "POST",
       headers: myHeaders,
       body: formdata,
     };
+    try{
 
-    const response = await fetch(
-      "https://academics.newtonschool.co/api/v1/facebook/post/",
-      requestOptions
-    );
-    const result = await response.json();
-    if (response.status >= 400) {
-      console.log(result.message || "post not fetch");
-      return;
-    } else {
-      setFileInput("");
-      setPostHeading("");
-      setNewPostImage("");
-    }
+      const response = await fetch(
+        "https://academics.newtonschool.co/api/v1/facebook/post/",
+        requestOptions
+        );
+        const result = await response.json();
+        if (response.status >= 400) {
+          console.log(result.message || "post not fetch");
+          toast.error(`${result.message}`, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          return;
+        } else {
+          setFileInput("");
+          setPostHeading("");
+          setNewPostImage("");
+        }
+      }
+      catch(err){
+        console.log("Error uploading post:", err)
+      }
+  };
+  const featureUpdateSoon = () => {
+    toast.error("feature update soon", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
   return (
     <>
@@ -92,7 +133,7 @@ function NewPost() {
         <hr></hr>
         <div className={style.AddActivity}>
           <div className={style.AddActivity_button}>
-            <button disabled>
+            <button onClick={featureUpdateSoon}>
               <VideocamOutlinedIcon style={{ color: "red" }} />
               <span>Live Video</span>
             </button>
@@ -127,13 +168,14 @@ function NewPost() {
           />
 
           <div className={style.AddActivity_button}>
-            <button disabled>
+            <button onClick={featureUpdateSoon}>
               <SentimentSatisfiedOutlinedIcon style={{ color: "yellow" }} />
               <span>Feeling/Activity</span>
             </button>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 }

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import style from "./SinglePostPage.module.css";
 import { CommentRounded } from "@mui/icons-material";
 import SendIcon from "@mui/icons-material/Send";
@@ -14,9 +14,12 @@ import LikeCount from "../../assets/likeCount.svg";
 import LoadingComponent from "../../Loading";
 import Page404 from "../404Page";
 import { useAuth } from "../../Provider/hooks";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SinglePostPage = () => {
   const params = useParams();
+  const myref = useRef();
   const postID = params.postID;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -68,7 +71,7 @@ const SinglePostPage = () => {
       console.log(parseData.message || "comment Failed");
       return;
     }
-    console.log(parseData.data);
+    // console.log("comment",parseData.data);
     setComments(parseData.data);
     setCommentsCount(parseData.results);
   };
@@ -154,7 +157,24 @@ const SinglePostPage = () => {
   if (error) {
     return <Page404 onRetry={fetchPostDetail} />;
   }
-
+  const featureUpdateSoon = () => {
+    toast.error("feature update soon", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  const commentref = () =>{
+    if(myref.current){
+      myref.current.focus();
+    }
+  }
+  
   return (
     <>
       <div className={style.singlePost_container}>
@@ -215,11 +235,11 @@ const SinglePostPage = () => {
               )}
               <span>Like</span>
             </button>
-            <button className={style.postBottomButton}>
+            <button className={style.postBottomButton} onClick={commentref}>
               <img src={CommentIcon} alt="comment" />
               <span>Comments</span>
             </button>
-            <button className={style.postBottomButton}>
+            <button className={style.postBottomButton} onClick={featureUpdateSoon}>
               <img src={ShareIcon} alt="Share" />
               <span>Share</span>
             </button>
@@ -270,6 +290,7 @@ const SinglePostPage = () => {
                 setTypeComment(e.target.value);
               }}
               placeholder="Write a comment..."
+              ref={myref}
             />
             <button onClick={handleMessageSend}>
               <SendIcon style={{ fontSize: "16px" }} />
@@ -277,6 +298,7 @@ const SinglePostPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

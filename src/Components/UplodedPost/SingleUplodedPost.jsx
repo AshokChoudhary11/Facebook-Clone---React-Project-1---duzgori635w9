@@ -8,16 +8,18 @@ import ShareIcon from "../../assets/share.svg";
 import CommentIcon from "../../assets/comment.svg";
 import LikeIcon from "../../assets/like.svg";
 import LikedIcon from "../../assets/liked.svg";
-import LikeCount from "../../assets/likeCount.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SingleUplodedPost = ({ item }) => {
   const userDetail = JSON.parse(localStorage.getItem("userDetails") || "{}");
   const [like, setLike] = useState(item?.likeCount || 0);
+  const [comment, setComment] = useState(item?.likeCount || 0);
   const [selfLike, setSelfLike] = useState(false);
-  const [userDetails , setUserDetails] = useState();
+  const [userDetails, setUserDetails] = useState();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const getUserDetails= async() => {
+  const getUserDetails = async () => {
     const responce = await fetch(
       `https://academics.newtonschool.co/api/v1/facebook/user/${item.author}`,
       {
@@ -35,12 +37,43 @@ const SingleUplodedPost = ({ item }) => {
     }
     setUserDetails(parseData.data);
     console.log("parseData.data", parseData.data);
-  }
+  };
+  console.log("item", item);
   const handleLike = async () => {
+    try {
+      const response = await fetch(
+        `https://academics.newtonschool.co/api/v1/facebook/like/${item?._id}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${userDetail.token}`,
+            projectId: "9fc41adjs85k",
+          },
+        }
+      );
+
+      if (response.status >= 400) {
+        const parseData = await response.json();
+        console.error(parseData.message || "Like failed");
+
+        if (parseData.message === "You already liked this post") {
+          setLike((prevLike) => prevLike + 1);
+          setSelfLike(true);
+          return;
+        }
+      } else {
+        setLike((prevLike) => prevLike + 1);
+        setSelfLike(true);
+      }
+    } catch (error) {
+      console.error("Error liking post:", error);
+    }
+  };
+
+  const fetchPostDetail = async () => {
     const responce = await fetch(
-      `https://academics.newtonschool.co/api/v1/facebook/like/${item?._id}`,
+      `https://academics.newtonschool.co/api/v1/facebook/post/${item?._id}`,
       {
-        method: "POST",
         headers: {
           Authorization: `Bearer ${userDetail.token}`,
           projectId: "9fc41adjs85k",
@@ -48,16 +81,8 @@ const SingleUplodedPost = ({ item }) => {
       }
     );
     const parseData = await responce.json();
-    if (responce.status >= 400) {
-      console.log(parseData.message || "like Failed");
-      if (parseData.message === "You already liked this post") {
-        setLike(like + 1);
-        setSelfLike(true);
-      }
-      return;
-    }
-    setLike(like + 1);
-    setSelfLike(true);
+    setLike(parseData.data.likeCount);
+    setComment(parseData.data.commentCount);
   };
   const handleRemoveLike = async () => {
     const responce = await fetch(
@@ -81,9 +106,22 @@ const SingleUplodedPost = ({ item }) => {
   const handleComment = () => {
     navigate(`/post/${item._id}/`);
   };
-  useEffect(()=>{
+  const featureUpdateSoon = () => {
+    toast.error("feature update soon", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+  useEffect(() => {
     getUserDetails();
-  },[])
+    fetchPostDetail();
+  }, []);
 
   return (
     <div className={style.SinglePost_container}>
@@ -106,10 +144,15 @@ const SingleUplodedPost = ({ item }) => {
           </span>
         </div>
         <Link to={`/post/${item?._id}/`}>
-          <p>{item.content}</p> 
-          {item.images?.length && (
-            <img src={item.images[0]} alt="image" className={style.PostImage} />
-          )}
+          <p>{item.content}</p>
+          {/* {item?.images?.length} */}
+          {item.images?.length > 0 ? (
+            <img
+              src={item.images[0]}
+              alt="image2"
+              className={style.PostImage}
+            />
+          ) : null}
         </Link>
       </>
 
@@ -130,14 +173,15 @@ const SingleUplodedPost = ({ item }) => {
         {/* <Link to={`/post/${item?.data?._id}/`}> */}
         <button onClick={handleComment} className={style.postBottomButton}>
           <img src={CommentIcon} alt="comment" />
-          <span>Comments</span>
+          <span>Comments</span> {comment}
         </button>
         {/* </Link> */}
-        <button className={style.postBottomButton}>
+        <button className={style.postBottomButton} onClick={featureUpdateSoon}>
           <img src={ShareIcon} alt="Share" />
           <span>Share</span>
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

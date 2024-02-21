@@ -32,7 +32,7 @@
 .facebookLogoname {
   display: none;
 }
-.navbar_search{
+.navbar_search {
 }
 .modal {
   position: absolute;
@@ -61,19 +61,26 @@ ul.searchResults li:hover {
   background-color: rgb(186, 186, 186);
   transition: 0.5s;
 }
-.serchList{
+.serchList {
   display: flex;
   align-items: center;
 }
-.userProfile{
+.userNotFound {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+  color: black;
+  font-weight: 600;
+}
+.userProfile {
   width: 32px;
   height: 32px;
   margin-right: 14px;
 }
-.userProfile img{
+.userProfile img {
   border-radius: 50px;
 }
-.friend{
+.friend {
   font-size: 12px;
   color: gray;
 }
@@ -177,7 +184,7 @@ ul.searchResults li:last-child {
     display: block;
     cursor: pointer;
   }
-  
+
   .search_and_profile {
     display: flex;
     gap: 16px;

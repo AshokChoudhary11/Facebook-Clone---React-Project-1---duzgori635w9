@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./SinglePost.module.css";
-import {
-  ThumbUpOutlined,
-  CommentOutlined,
-  ShareOutlined,
-  ThumbUp,
-  CommentRounded,
-} from "@mui/icons-material";
+
 import { fixedRandomName } from "../../utils/randomName";
 import { Link, useNavigate } from "react-router-dom";
 import ShareIcon from "../../assets/share.svg";
 import CommentIcon from "../../assets/comment.svg";
 import LikeIcon from "../../assets/like.svg";
 import LikedIcon from "../../assets/liked.svg";
-import LikeCount from "../../assets/likeCount.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SinglePost = ({ item, index = 0 }) => {
   // console.log(item);
@@ -66,6 +61,18 @@ const SinglePost = ({ item, index = 0 }) => {
   };
   const handleComment = () => {
     navigate(`/post/${item?._id}/`);
+  };
+  const featureUpdateSoon = () => {
+    toast.error("feature update soon", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
   return (
@@ -120,11 +127,12 @@ const SinglePost = ({ item, index = 0 }) => {
           {item?.commentCount}
         </button>
         {/* </Link> */}
-        <button className={style.postBottomButton}>
+        <button className={style.postBottomButton} onClick={featureUpdateSoon}>
           <img src={ShareIcon} alt="Share" />
           <span>Share</span>
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 };

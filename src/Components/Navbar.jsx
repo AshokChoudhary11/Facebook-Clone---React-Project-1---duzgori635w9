@@ -30,6 +30,9 @@ function Navbar() {
       setShowModal(false);
       return;
     }
+    if (searchValue === "") {
+      setShowModal(false);
+    }
 
     try {
       setLoading(true);
@@ -55,7 +58,7 @@ function Navbar() {
     } catch (error) {
       console.error("Error fetching search results", error);
       setSearchResults([]);
-      setShowModal(false);
+      setShowModal(true);
     } finally {
       setLoading(false);
     }
@@ -67,7 +70,6 @@ function Navbar() {
     setShowModal(false);
     navigate(`/UsersDetails/${userId}`);
   };
-  
 
   const toHome = () => {
     navigate("/");
@@ -85,7 +87,10 @@ function Navbar() {
     <nav className={style.navbar}>
       <div className={style.navbar_logo}>
         <Link to={"/"}>
-          <img className={style.facebookLogoname} src="https://logos-world.net/wp-content/uploads/2020/05/Facebook-Logo-2019.png"/>
+          <img
+            className={style.facebookLogoname}
+            src="https://logos-world.net/wp-content/uploads/2020/05/Facebook-Logo-2019.png"
+          />
           <img
             className={style.logoicon}
             src="https://www.edigitalagency.com.au/wp-content/uploads/Facebook-logo-blue-circle-large-transparent-png.png"
@@ -100,33 +105,36 @@ function Navbar() {
               value={searchValue}
               onChange={handleSearchChange}
             />
-            {showModal && searchResults.length > 0 && (
+            {showModal && (
               <div className={style.modal}>
                 {loading && <p>Loading...</p>}
-
-                <ul className={style.searchResults}>
-                  {searchResults.map((result) => (
-                    <li
-                      key={result.id}
-                      onClick={() => handleResultClick(result._id)}
-                    >
-                      <div className={style.serchList} key={result._id}>
-                        <div className={style.userProfile}>
-                          <img src={result.profileImage} />
+                {searchResults.length > 0 ? (
+                  <ul className={style.searchResults}>
+                    {searchResults.map((result) => (
+                      <li
+                        key={result.id}
+                        onClick={() => handleResultClick(result._id)}
+                      >
+                        <div className={style.serchList} key={result._id}>
+                          <div className={style.userProfile}>
+                            <img src={result.profileImage} />
+                          </div>
+                          <div>
+                            <div className={style.username}>{result.name}</div>
+                            <div className={style.friend}>friend</div>
+                          </div>
                         </div>
-                        <div>
-                          <div className={style.username}>{result.name}</div>
-                          <div className={style.friend}>friend</div>
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className={style.userNotFound}>No users found</p>
+                )}
               </div>
             )}
           </div>
           <div className={style.navSearchIcon}>
-            <SearchIcon  />
+            <SearchIcon />
           </div>
           <div className={style.navbar_mobile_profile}>
             {" "}
